@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: [ master ]
+    branches: [ * ]
 
 jobs:
   release:
@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: |
           tag=$(git describe --tags --abbrev=0)
-          release_name="NxCertDump-master-${{ matrix.target }}"
+          release_name="NxCertDump-${{ github.ref }}-${{ matrix.target }}"
           # Build everything
           dotnet publish NxCertDump/NxCertDump.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
           # Pack files
@@ -54,4 +54,4 @@ jobs:
           prerelease: true
           title: "Latest Build"
           files: |
-            "NxCertDump-*"
+            NxCertDump-*
