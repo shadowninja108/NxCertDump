@@ -34,7 +34,8 @@ jobs:
         shell: bash
         run: |
           tag=$(git describe --tags --abbrev=0)
-          release_name="NxCertDump-${{ github.ref }}-${{ matrix.target }}"
+          git_branch=${GITHUB_REF##*/}
+          release_name="NxCertDump-$git_branch-${{ matrix.target }}"
           # Build everything
           dotnet publish NxCertDump/NxCertDump.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
           # Pack files
