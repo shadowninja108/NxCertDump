@@ -47,8 +47,11 @@ jobs:
           # Delete output directory
           rm -r "$release_name"
       - name: Publish
-        uses: softprops/action-gh-release@v1
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          files: "NxCertDump-*"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Latest Build"
+          files: |
+            "NxCertDump-*"
