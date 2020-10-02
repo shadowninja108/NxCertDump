@@ -23,3 +23,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish
+      run: dotnet publish -c Release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: NxCertDump
+        path:  /home/runner/work/NxCertDump/NxCertDump/NxCertDump/bin/Release/netcoreapp3.1/publish
