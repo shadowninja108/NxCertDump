@@ -54,4 +54,4 @@ jobs:
           tag: "latest"
           release: "Latest Build"
           prerelease: true
-          files: NxCertDump-*
+          files: "$(NxCertDump-*)"
