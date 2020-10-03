@@ -48,11 +48,10 @@ jobs:
           # Delete output directory
           rm -r "$release_name"
       - name: Publish
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: "johnwbyrd/update-release@v1"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "latest"
+          release: "Latest Build"
           prerelease: true
-          title: "Latest Build"
-          files: |
-            NxCertDump-*
+          asset: NxCertDump-*
