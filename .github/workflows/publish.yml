@@ -42,8 +42,10 @@ jobs:
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
             7z a -tzip "${release_name}.zip" "./${release_name}/*"
-          else
+            echo "::set-env name=out_path::${release_name}.zip"
+          else  
           tar czvf "${release_name}.tar.gz" "$release_name"
+          echo "::set-env name=out_path::${release_name}.tar.gz"
           fi
           # Delete output directory
           rm -r "$release_name"
@@ -54,4 +56,4 @@ jobs:
           tag: "latest"
           release: "Latest Build"
           prerelease: true
-          files: "$(NxCertDump-*)"
+          files: ${{ env.out_path }}
