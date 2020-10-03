@@ -37,7 +37,7 @@ jobs:
           git_branch=${GITHUB_REF##*/}
           release_name="NxCertDump-$git_branch-${{ matrix.target }}"
           # Build everything
-          dotnet publish NxCertDump/NxCertDump.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
+          dotnet publish NxCertDump/NxCertDump.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name" --self-contained false
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
