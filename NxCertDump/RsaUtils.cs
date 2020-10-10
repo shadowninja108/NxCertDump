@@ -18,7 +18,7 @@ namespace NxCertDump
             return RecoverRsaParameters(
                 publicKeyParams.Modulus,
                 publicKeyParams.Exponent,
-                new BigInteger(privateModulus.Take(0x100).ToArray())
+                new BigInteger(1, privateModulus.Take(0x100).ToArray())
             );
         }
 
